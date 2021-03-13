@@ -1,17 +1,10 @@
 import React from "react";
 import "./Header.css";
-import {
-  MenuItem,
-  FormControl,
-  Select,
-  Card,
-  CardContent,
-  Tooltip,
-} from "@material-ui/core";
+import { MenuItem, FormControl, Select, Tooltip } from "@material-ui/core";
 import Sticky from "react-sticky-el";
 import useScreenSize from "use-screen-size";
 
-function Header({ country, countries, onCountryChange }) {
+export const Header = ({ country, countries, onCountryChange }) => {
   const size = useScreenSize();
   return (
     <div className="app__header">
@@ -43,6 +36,4 @@ function Header({ country, countries, onCountryChange }) {
       </Sticky>
     </div>
   );
-}
-
-export default Header;
+};

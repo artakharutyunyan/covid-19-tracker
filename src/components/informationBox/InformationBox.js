@@ -1,8 +1,8 @@
 import React from "react";
 import { Card, CardContent, Typography, Tooltip } from "@material-ui/core";
-import "./InfoBox.css";
+import "./InformationBox.css";
 
-function InfoBox({
+export const InformationBox = ({
   title,
   cases,
   total,
@@ -11,7 +11,7 @@ function InfoBox({
   isRed,
   isBlue,
   ...props
-}) {
+}) => {
   return (
     <Tooltip title="Click">
       <Card
@@ -44,6 +44,4 @@ function InfoBox({
       </Card>
     </Tooltip>
   );
-}
-
-export default InfoBox;
+};

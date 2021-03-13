@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./App.css";
 import numeral from "numeral";
 import Sticky from "react-sticky-el";
@@ -6,15 +6,37 @@ import { sortData, prettyPrintStat } from "./util";
 import { Card, CardContent } from "@material-ui/core";
 import "leaflet/dist/leaflet.css";
 //components
-import Header from "./components/header/Header";
-import InfoBox from "./components/infoBox/InfoBox";
-import Map from "./components/map/Map";
+import { Header } from "./components/header";
+import { InformationBox } from "./components/informationBox";
+import { Map } from "./components/map";
 import LineGraph from "./components/LineGraph";
 import BarGraph from "./components/BarGraph";
-import Table from "./components/table/Table";
-import Footer from "./components/footer/Footer";
+import { Table } from "./components/table";
+import { Footer } from "./components/footer";
+//theme
+import { theme } from "./theme/theme";
+import { ThemeContext } from "./theme/Provider";
+import ThemeSwitch from "./theme/ThemeSwitch";
+
+const getStyles = (mode) => ({
+  app: {
+    display: "flex",
+    justifyContent: "space-evenly",
+    padding: 20,
+    backgroundColor: theme[mode].backgroundColor,
+  },
+  text: {
+    color: theme[mode].color,
+  },
+  theme: {
+    color: theme[mode].highlight,
+  },
+});
 
 function App() {
+  const { mode } = useContext(ThemeContext);
+  const styles = getStyles(mode);
+
   const [country, setInputCountry] = useState("worldwide");
   const [countryName, setCountryName] = useState("worldwide");
   const [countryInfo, setCountryInfo] = useState({});
@@ -85,8 +107,9 @@ function App() {
   };
   return (
     <div>
-      <div className="app">
+      <div style={styles.app}>
         <div className="app__left">
+          <ThemeSwitch />
           <Header
             country={country}
             countries={countries}
@@ -94,7 +117,7 @@ function App() {
           />
           <Sticky stickyStyle={{ zIndex: 9999 }}>
             <div className="app__stats">
-              <InfoBox
+              <InformationBox
                 onClick={(e) => setCasesType("cases")}
                 title="New Cases"
                 isBlue
@@ -103,7 +126,7 @@ function App() {
                 total={numeral(countryInfo.cases).format("0.0a")}
                 style={{ zIndex: 9999999999999999999 }}
               />
-              <InfoBox
+              <InformationBox
                 onClick={(e) => setCasesType("recovered")}
                 title="Recovered"
                 isGreen
@@ -111,7 +134,7 @@ function App() {
                 cases={prettyPrintStat(countryInfo.todayRecovered)}
                 total={numeral(countryInfo.recovered).format("0.0a")}
               />
-              <InfoBox
+              <InformationBox
                 onClick={(e) => setCasesType("deaths")}
                 title="Deaths"
                 isRed

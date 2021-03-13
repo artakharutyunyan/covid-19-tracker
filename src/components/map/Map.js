@@ -10,7 +10,7 @@ function ChangeMap({ center, zoom }) {
   return null;
 }
 
-function Map({ countries, casesType, center, zoom }) {
+export const Map = ({ countries, casesType, center, zoom }) => {
   const size = useScreenSize();
   return (
     <div style={{ height: size.width >= 900 ? 731 : 400 }} className="map">
@@ -24,6 +24,4 @@ function Map({ countries, casesType, center, zoom }) {
       </LeafletMap>
     </div>
   );
-}
-
-export default Map;
+};

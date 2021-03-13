@@ -1,16 +1,13 @@
 import React from "react";
 import "./Footer.css";
 import Grid from "@material-ui/core/Grid";
-import Link from "@material-ui/core/Link";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Tooltip from "@material-ui/core/Tooltip";
 // @material-ui/icons
-import Favorite from "@material-ui/icons/Favorite";
 import EmailIcon from "@material-ui/icons/Email";
-import PhoneIcon from "@material-ui/icons/Phone";
 
-function Footer() {
+export const Footer = () => {
   const preventDefault = (event) => event.preventDefault();
   return (
     <Grid className="footer-bottom-container" container justify="center">
@@ -74,6 +71,4 @@ function Footer() {
       <Grid style={{ textAlign: "center" }} item md={2} sm={2} xs={12}></Grid>
     </Grid>
   );
-}
-
-export default Footer;
+};

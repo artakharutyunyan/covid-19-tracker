@@ -6,13 +6,6 @@ body {
   background-color: #f5f6fa;
 }
 
-.app {
-  display: flex;
-  justify-content: space-evenly;
-  background-color: #f5f6fa;
-  padding: 20px;
-}
-
 .app__stats {
   display: flex;
   justify-content: space-between;
